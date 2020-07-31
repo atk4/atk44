@@ -68,7 +68,7 @@ $form->onSubmit(function (Form $form) {
 
     return $form->success(
         'Record Added',
-        'there are now ' . $form->model->action('count')->getOne() . ' records in DB'
+        'there are now ' . $form->model->toQuery('count')->getOne() . ' records in DB'
     );
 });
 
