@@ -186,6 +186,7 @@ jobs:
       matrix:
         php: ['latest-npm']
         type: ['Chrome', 'Firefox', 'Chrome Lowest', 'Chrome Slow']
+        x: ['1', '2', '3', '4']
     env:
       LOG_COVERAGE: ''
     services:
@@ -284,3 +285,18 @@ jobs:
           sed -i 's/usleep(100000)/usleep(5000)/' vendor/behat/mink-selenium2-driver/src/Selenium2Driver.php
 
           vendor/bin/behat -vv --config behat.yml.dist
+
+      - name: "Extra Behat 2/8"
+        run: vendor/bin/behat -vv --config behat.yml.dist
+      - name: "Extra Behat 3/8"
+        run: vendor/bin/behat -vv --config behat.yml.dist
+      - name: "Extra Behat 4/8"
+        run: vendor/bin/behat -vv --config behat.yml.dist
+      - name: "Extra Behat 5/8"
+        run: vendor/bin/behat -vv --config behat.yml.dist
+      - name: "Extra Behat 6/8"
+        run: vendor/bin/behat -vv --config behat.yml.dist
+      - name: "Extra Behat 7/8"
+        run: vendor/bin/behat -vv --config behat.yml.dist
+      - name: "Extra Behat 8/8"
+        run: vendor/bin/behat -vv --config behat.yml.dist
