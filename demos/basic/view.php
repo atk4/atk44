@@ -35,7 +35,7 @@ foreach (str_split('Click me!!') as $letter) {
 }
 
 \Atk4\Ui\Header::addTo($app, ['View load HTML from string or file']);
-$planeTemplate = new HtmlTemplate('<div id="{$_id}" class="ui statistic">
+$planeTemplate = new HtmlTemplate\DomNode('<div id="{$_id}" class="ui statistic">
     <div class="value">
       <i class="plane icon"></i> {$num}
     </div>

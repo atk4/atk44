@@ -54,8 +54,8 @@ class App
     /** @var string Name of application */
     public $title = 'Agile UI - Untitled Application';
 
-    /** @var Layout */
-    public $layout; // the top-most view object
+    /** @var Layout the top-most view object */
+    public $layout;
 
     /**
      * Set one or more directories where templates should reside.
@@ -157,7 +157,7 @@ class App
         '__atk_tab' => false,
     ];
 
-    public $templateClass = HtmlTemplate::class;
+    public $templateClass = HtmlTemplate/*\DomNode*/::class;
 
     /**
      * Constructor.
@@ -1088,7 +1088,7 @@ class App
         if ($lateError !== null) {
             echo "\n" . '!! FATAL UI ERROR: ' . $lateError . ' !!' . "\n";
 
-            exit(1);
+//            exit(1);
         }
 
         echo $data;
