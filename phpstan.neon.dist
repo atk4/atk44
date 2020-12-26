@@ -37,14 +37,8 @@ parameters:
             path: 'src/CardDeck.php'
             message: '~^Access to an undefined property Atk4\\Ui\\CardDeck::\$editFields\.$~'
         -
-            path: 'src/Form/Control/Calendar.php'
-            message: '~^Class Atk4\\Ui\\JsFunction constructor invoked with 3 parameters, 0\-2 required\.$~'
-        -
             path: 'src/Form/Control/Lookup.php'
             message: '~^Call to an undefined method Atk4\\Ui\\Form\\Control\\Lookup::search\(\)\.$~'
-        -
-            path: 'src/Form/Control/ScopeBuilder.php'
-            message: '~^Variable \$inputType might not be defined\.$~'
         -
             path: 'src/Modal.php'
             message: '~^Access to an undefined property Atk4\\Ui\\Modal::\$options\.$~'
@@ -90,12 +84,6 @@ parameters:
         -
             path: 'demos/_unit-test/callback.php'
             message: '~^Call to an undefined method Atk4\\Ui\\AbstractView::jsReload\(\)\.$~'
-        -
-            path: 'demos/collection/crud.php'
-            message: '~^Method Atk4\\Ui\\Columns::addColumn\(\) invoked with 2 parameters, 0\-1 required\.$~'
-        -
-            path: 'demos/collection/multitable.php'
-            message: '~^Method Atk4\\Ui\\View::setModel\(\) invoked with 2 parameters, 1 required\.$~'
         -
             path: 'demos/collection/tablefilter.php'
             message: '~^Call to an undefined method Atk4\\Ui\\Demos\\CountryLock::expr\(\)\.$~'
@@ -244,9 +232,6 @@ parameters:
             path: 'src/Crud.php'
             message: '~^Call to an undefined method Atk4\\Ui\\UserAction\\JsExecutorInterface::stickyGet\(\)\.$~'
         -
-            path: 'src/Crud.php'
-            message: '~^Method Atk4\\Ui\\UserAction\\JsExecutorInterface::jsExecute\(\) invoked with 0 parameters, 1 required\.$~'
-        -
             path: 'src/Form.php'
             message: '~^Call to an undefined method Atk4\\Ui\\JsChain::preventFormLeave\(\)\.$~'
         -
@@ -302,9 +287,6 @@ parameters:
             message: '~^Call to an undefined method Atk4\\Ui\\AbstractView::notClosable\(\)\.$~'
         -
             path: 'src/Panel/Right.php'
-            message: '~^PHPDoc tag @param references unknown parameter: \$selector$~'
-        -
-            path: 'src/Panel/Right.php'
             message: '~^Call to an undefined method Atk4\\Ui\\Panel\\LoadableContent::getClearSelector\(\)\.$~'
         -
             path: 'src/Panel/Right.php'
@@ -330,9 +312,6 @@ parameters:
         -
             path: 'src/Table/Column/FilterPopup.php'
             message: '~^Call to an undefined method Atk4\\Data\\Model::setConditionForModel\(\)\.$~'
-        -
-            path: 'src/Table/Column/Link.php'
-            message: '~^Cannot call method set\(\) on array\|string\.$~'
         -
             path: 'src/Tabs.php'
             message: '~^Call to an undefined method Atk4\\Ui\\View::setPath\(\)\.$~'
@@ -363,12 +342,6 @@ parameters:
         -
             path: 'src/View.php'
             message: '~^Call to an undefined method Atk4\\Ui\\App::getViewJS\(\)\.$~'
-        -
-            path: 'src/VirtualPage.php'
-            message: '~^Method Atk4\\Ui\\VirtualPage::getHtml\(\) should return string but return statement is missing\.$~'
-        -
-            path: 'tests/DemosTest.php'
-            message: '~^Variable \$app in PHPDoc tag @var does not exist\.$~'
         -
             path: 'tests/FormTest.php'
             message: '~^Access to an undefined property Atk4\\Ui\\App::\$output\.$~'
