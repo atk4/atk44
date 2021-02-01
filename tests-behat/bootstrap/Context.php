@@ -295,7 +295,7 @@ class Context extends RawMinkContext implements BehatContext
      */
     public function modalIsOpenWithText($arg1)
     {
-        $modal = $this->waitForNodeElement('.modal.transition.visible.active.front');
+        $modal = $this->getSession()->getPage()->find('css', '.modal.transition.visible.active.front');
         if ($modal === null) {
             throw new Exception('No modal found');
         }
@@ -312,7 +312,7 @@ class Context extends RawMinkContext implements BehatContext
     public function modalIsShowingText($arg1, $arg2)
     {
         // get modal
-        $modal = $this->waitForNodeElement('.modal.transition.visible.active.front');
+        $modal = $this->getSession()->getPage()->find('css', '.modal.transition.visible.active.front');
         if ($modal === null) {
             throw new Exception('No modal found');
         }
@@ -321,29 +321,6 @@ class Context extends RawMinkContext implements BehatContext
         if (!$text || $text->getText() !== $arg1) {
             throw new Exception('No such text in modal');
         }
-    }
-
-    /**
-     * Get a node element by it's selector.
-     * Will try to get element for 20ms.
-     * Exemple: Use with a modal window where reloaded content
-     * will resize it's window thus making it not accessible at first.
-     */
-    private function waitForNodeElement(string $selector): ?NodeElement
-    {
-        $counter = 0;
-        $element = null;
-        while ($counter < 20) {
-            $element = $this->getSession()->getPage()->find('css', $selector);
-            if ($element === null) {
-                usleep(1000);
-                ++$counter;
-            } else {
-                break;
-            }
-        }
-
-        return $element;
     }
 
     /**
@@ -634,8 +611,8 @@ class Context extends RawMinkContext implements BehatContext
     protected function getFinishedScript(): string
     {
         return 'document.readyState === \'complete\''
-            . ' && typeof jQuery !== \'undefined\' && jQuery.active === 0'
-            . ' && typeof atk !== \'undefined\' && atk.vueService.areComponentsLoaded()';
+               . ' && typeof jQuery !== \'undefined\' && jQuery.active === 0'
+               . ' && typeof atk !== \'undefined\' && atk.vueService.areComponentsLoaded()';
     }
 
     /**

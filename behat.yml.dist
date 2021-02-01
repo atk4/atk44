@@ -19,4 +19,4 @@ default:
                 chrome:
                   args:
                     - '--headless'
-                    - '--window-size=1930,1200'
+                    - '--window-size=1280,720'
