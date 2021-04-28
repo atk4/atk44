@@ -607,7 +607,7 @@ class Multiline extends Form\Control
         }
 
         $definition = array_map(function ($value) use ($field) {
-            return is_array($value) && is_callable($value) ? call_user_func($value, $field) : $value;
+            return is_array($value) && is_callable($value) ? $value($field) : $value;
         }, $component);
 
         return $definition;
@@ -646,7 +646,7 @@ class Multiline extends Form\Control
         foreach ($fieldValues as $rows) {
             foreach ($rows as $fieldName => $value) {
                 if (array_key_exists($fieldName, $this->valuePropsBinding)) {
-                    call_user_func($this->valuePropsBinding[$fieldName], $this->getModel()->getField($fieldName), $value);
+                    ($this->valuePropsBinding[$fieldName])($this->getModel()->getField($fieldName), $value);
                 }
             }
         }
