@@ -202,7 +202,7 @@ class ExecutorFactory
             $seed = $viewType['default'];
         }
 
-        $seed = is_array($seed) && is_callable($seed) ? call_user_func($seed, $action, $type) : $seed;
+        $seed = is_array($seed) && is_callable($seed) ? $seed($action, $type) : $seed;
 
         return Factory::factory($seed);
     }
@@ -249,7 +249,7 @@ class ExecutorFactory
             $caption = $action->getCaption();
         }
 
-        return is_array($caption) && is_callable($caption) ? call_user_func($caption, $action) : $caption;
+        return is_array($caption) && is_callable($caption) ? $caption($action) : $caption;
     }
 
     /**

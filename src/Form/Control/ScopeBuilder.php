@@ -496,12 +496,12 @@ class ScopeBuilder extends Control
 
         // when $rule is callable
         if (is_callable($rule)) {
-            $rule = call_user_func($rule, $field, $options);
+            $rule = $rule($field, $options);
         }
 
         // map all values for callables and merge with defaults
         return array_merge(array_map(function ($value) use ($field, $options) {
-            return is_array($value) && is_callable($value) ? call_user_func($value, $field, $options) : $value;
+            return is_array($value) && is_callable($value) ? $value($field, $options) : $value;
         }, $rule), $defaults);
     }
 
