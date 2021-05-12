@@ -247,7 +247,7 @@ class TableColumnLinkTest extends AtkPhpunit\TestCase
 
     public function testLink9(): void
     {
-        $this->table->addDecorator('name', [Table\Column\Link::class, ['example'], ['test' => 'id'], 'use_label' => false]);
+        $this->table->addDecorator('name', [Table\Column\Link::class, ['example'], ['test' => 'id'], 'label' => false]);
 
         $this->assertSame(
             '<tr data-id="1"><td><a href="example.php?test=1"></a></td><td>ref123</td></tr>',

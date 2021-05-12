@@ -56,8 +56,19 @@ class Link extends Table\Column
      */
     public $args = [];
 
-    /** @var bool use value as label of the link */
+    /** @deprecated use $label instead - will be removed dec-2020 */
     public $use_label = true;
+
+    /**
+     * Label template to use on the link.
+     *
+     * $label = true - use field value as label
+     * $label = false - no label
+     * $label = 'string {$field}' - use custom template provided
+     *
+     * @var bool|string
+     * */
+    public $label = true;
 
     /**
      * set element class.
@@ -137,8 +148,19 @@ class Link extends Table\Column
         }
 
         $label = '';
-        if ($this->use_label) {
-            $label = $field ? ('{$' . $field->short_name . '}') : '[Link]';
+        // backward compatibility - will be removed dec-2020
+        if (!$this->use_label) {
+            'trigger_error'('Property atk4\ui\Table\Column\Link::$use_label is deprecated. Use atk4\ui\Table\Column\Link::$label instead', E_USER_DEPRECATED);
+
+            $this->label = false;
+        }
+
+        if ($this->label) {
+            if ($this->label === true) {
+                $label = $field ? ('{$' . $field->short_name . '}') : '[Link]';
+            } else {
+                $label = $this->label;
+            }
         }
 
         $class = '';
