@@ -133,7 +133,7 @@ class ModalExecutor extends Modal implements JsExecutorInterface
 
         $table_name = is_array($action->getModel()->table) ? $getTableName($action->getModel()->table) : $action->getModel()->table;
 
-        $this->id = mb_strtolower($this->name . '_' . $table_name . '_' . $action->short_name);
+        $this->id = preg_replace('~[^A-Za-z0-9\-]~', '_', mb_strtolower($this->name . '_' . $table_name . '_' . $action->short_name));
         $this->name = $this->id;
 
         // Add buttons to modal for next and previous.
