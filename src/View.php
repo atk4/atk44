@@ -584,6 +584,71 @@ class View extends AbstractView implements JsExpressionable
 
     // }}}
 
+    // {{{ Sticky URLs
+
+    /** @var string[] stickyGet arguments */
+    public $stickyArgs = [];
+
+    /**
+     * Build an URL which this view can use for js call-backs. It should
+     * be guaranteed that requesting returned URL would at some point call
+     * $this->invokeInit().
+     *
+     * @param array $page
+     *
+     * @return string
+     */
+    public function jsUrl($page = [])
+    {
+        return $this->getApp()->jsUrl($page, false, $this->_getStickyArgs());
+    }
+
+    /**
+     * Build an URL which this view can use for call-backs. It should
+     * be guaranteed that requesting returned URL would at some point call
+     * $this->invokeInit().
+     *
+     * @param string|array $page URL as string or array with page name as first element and other GET arguments
+     *
+     * @return string
+     */
+    public function url($page = [])
+    {
+        return $this->getApp()->url($page, false, $this->_getStickyArgs());
+    }
+
+    /**
+     * Get sticky arguments defined by the view and parents (including API).
+     */
+    protected function _getStickyArgs(): array
+    {
+        if ($this->issetOwner() && $this->getOwner() instanceof self) {
+            $stickyArgs = array_merge($this->getOwner()->_getStickyArgs(), $this->stickyArgs);
+        } else {
+            $stickyArgs = $this->stickyArgs;
+        }
+
+        return $stickyArgs;
+    }
+
+    /**
+     * Mark GET argument as sticky. Calling url() on this view or any
+     * sub-views will embedd the value of this GET argument.
+     *
+     * If GET argument is empty or false, it won't make into URL.
+     *
+     * If GET argument is not presently set you can specify a 2nd argument
+     * to forge-set the GET argument for current view and it's sub-views.
+     */
+    public function stickyGet(string $name, string $newValue = null): ?string
+    {
+        $this->stickyArgs[$name] = $newValue ?? $_GET[$name] ?? null;
+
+        return $this->stickyArgs[$name];
+    }
+
+    // }}}
+
     // {{{ Rendering
 
     /**

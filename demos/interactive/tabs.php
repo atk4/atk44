@@ -44,7 +44,7 @@ $tabs->addTab('Dynamic Form', function ($tab) {
     $modelRegister->addField('name', ['caption' => 'Please enter your name (John)']);
 
     $form = \Atk4\Ui\Form::addTo($tab, ['segment' => true]);
-    $form->setModel($modelRegister);
+    $form->setModel($modelRegister->createEntity());
     $form->onSubmit(function (\Atk4\Ui\Form $form) {
         if ($form->model->get('name') !== 'John') {
             return $form->error('name', 'Your name is not John! It is "' . $form->model->get('name') . '". It should be John. Pleeease!');

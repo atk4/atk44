@@ -124,6 +124,9 @@ class App
         'cache-control' => 'no-store', // disable caching by default
     ];
 
+    /** @var Modal[] Modal view that need to be rendered using json output. */
+    private $modals = [];
+
     /**
      * @var bool whether or not semantic-ui vue has been initialised
      */
@@ -220,6 +223,17 @@ class App
 
         // setting up default executor factory.
         $this->executorFactory = Factory::factory([ExecutorFactory::class]);
+    }
+
+    /**
+     * Register a modal view.
+     * Fomantic-ui Modal are teleported in HTML template
+     * within specific location. This will keep track
+     * of modals when terminating app using json.
+     */
+    public function registerModal(Modal $modal): void
+    {
+        $this->modals[$modal->short_name] = $modal;
     }
 
     public function setExecutorFactory(ExecutorFactory $factory)
@@ -554,7 +568,8 @@ class App
             $this->hook(self::HOOK_BEFORE_OUTPUT);
 
             if (isset($_GET['__atk_callback']) && $this->catch_runaway_callbacks) {
-                throw new Exception('Callback requested, but never reached. You may be missing some arguments in request URL.');
+                throw (new Exception('Callback requested, but never reached. You may be missing some arguments in request URL.'))
+                    ->addMoreInfo('callback', $_GET['__atk_callback']);
             }
 
             $output = $this->html->template->renderToHtml();
@@ -1132,11 +1147,9 @@ class App
         unset($_GET['__atk_reload']);
 
         $modals = [];
-        foreach ($this->html !== null ? $this->html->elements : [] as $view) {
-            if ($view instanceof Modal) {
-                $modals[$view->name]['html'] = $view->getHtml();
-                $modals[$view->name]['js'] = $view->getJsRenderActions();
-            }
+        foreach ($this->modals as $view) {
+            $modals[$view->name]['html'] = $view->getHtml();
+            $modals[$view->name]['js'] = $view->getJsRenderActions();
         }
 
         return $modals;

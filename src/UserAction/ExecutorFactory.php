@@ -10,7 +10,6 @@ use Atk4\Ui\AbstractView;
 use Atk4\Ui\Button;
 use Atk4\Ui\Exception;
 use Atk4\Ui\Item;
-use Atk4\Ui\Modal;
 use Atk4\Ui\View;
 
 /**
@@ -172,19 +171,7 @@ class ExecutorFactory
             }
         }
 
-        $executor = Factory::factory($seed);
-        if ($executor instanceof Modal) {
-            // add modal to app->html for proper rendering on callback.
-            if (!isset($owner->getApp()->html->elements[$executor->short_name])) {
-                // very dirty hack, @TODO, attach modals in the standard render tree
-                // but only render the result to a different place/html DOM
-                $executor->viewForUrl = $owner;
-                $executor = $owner->getApp()->html->add($executor, 'Modals'); //->setAction($action);
-            }
-        } else {
-            $executor = $owner->add($executor);
-        }
-
+        $executor = $owner->add(Factory::factory($seed));
         $executor->setAction($action);
 
         return $executor;

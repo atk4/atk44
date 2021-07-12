@@ -59,6 +59,12 @@ class Modal extends View
      */
     public $showActions = false;
 
+    protected function init(): void
+    {
+        parent::init();
+        $this->getApp()->registerModal($this);
+    }
+
     /**
      * Set callback function for this modal.
      * $fx is set as an array in order to comply with View::set().
@@ -329,13 +335,5 @@ class Modal extends View
         $this->js(true)->data($data);
 
         parent::renderView();
-    }
-
-    /** @var AbstractView */
-    public $viewForUrl;
-
-    protected function mergeStickyArgsFromChildView(): ?AbstractView
-    {
-        return $this->viewForUrl ?? $this->cb;
     }
 }

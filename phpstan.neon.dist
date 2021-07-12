@@ -905,9 +905,6 @@ parameters:
             path: 'src/View.php'
             message: '~^If condition is always true\.$~'
         -
-            path: 'src/Wizard.php'
-            message: '~^Negated boolean expression is always false\.$~'
-        -
             path: 'tests/DemosTest.php'
             message: '~^Else branch is unreachable because ternary operator condition is always true\.$~'
 
@@ -1201,12 +1198,6 @@ parameters:
         -
             path: 'src/AbstractView.php'
             message: '~^Method Atk4\\Ui\\AbstractView::add\(\) has parameter \$args with no typehint specified\.$~'
-        -
-            path: 'src/AbstractView.php'
-            message: '~^Instanceof between Atk4\\Ui\\View and Atk4\\Ui\\AbstractView will always evaluate to true\.$~'
-        -
-            path: 'src/AbstractView.php'
-            message: '~^Strict comparison using \!\=\= between Atk4\\Ui\\AbstractView and null will always evaluate to true\.$~'
         -
             path: 'src/Accordion.php'
             message: '~^Method Atk4\\Ui\\Accordion::activate\(\) has no return typehint specified\.$~'

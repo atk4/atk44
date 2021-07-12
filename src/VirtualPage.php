@@ -150,9 +150,4 @@ class VirtualPage extends View
             $this->getApp()->terminateHtml($this->getApp()->html->template);
         }
     }
-
-    protected function mergeStickyArgsFromChildView(): AbstractView
-    {
-        return $this->cb;
-    }
 }

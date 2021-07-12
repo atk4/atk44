@@ -57,9 +57,4 @@ class Content extends View implements LoadableContent
     {
         return ['.atk-panel-content'];
     }
-
-    protected function mergeStickyArgsFromChildView(): ?\Atk4\Ui\AbstractView
-    {
-        return $this->cb;
-    }
 }
